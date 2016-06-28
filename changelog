@@ -1,4 +1,16 @@
-commit 3c8660c8be02d98278b9f8f429448a13f39042ad (HEAD, origin/master, origin/HEAD, master)
+commit ec297a048a38d96b0478d2be88797283a1dab6ea (HEAD, origin/master, origin/HEAD, master)
+Author: jose perez <sinfallas@gmail.com>
+Date:   Tue Jun 28 17:06:05 2016 -0400
+
+    * update readme.md
+
+commit 314c2c729c2eb382526c8a6920953d00059ae05e
+Author: jose perez <sinfallas@gmail.com>
+Date:   Tue Jun 28 17:03:31 2016 -0400
+
+    * changelog
+
+commit 3c8660c8be02d98278b9f8f429448a13f39042ad
 Author: jose perez <sinfallas@gmail.com>
 Date:   Tue Jun 28 17:03:18 2016 -0400
 
