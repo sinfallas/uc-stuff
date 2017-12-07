@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+# Made by Sinfallas <sinfallas@yahoo.com>
+# Licence: GPL-2
+LC_ALL=C
+
+if [[ "$EUID" != "0" ]]; then
+	echo -e "\e[00;31mERROR: Debe ser root.\e[00m"
+	exit 1
+fi
+
+export {http,https,ftp}_proxy="http://user:pass@proxy.uc.edu.ve:5010"
+
+mkdir -p /var/spool/squid3
+mkdir -p /var/log/squid3
+
+chown -R proxy:proxy /var/spool/squid3
+chown -R proxy:proxy /var/log/squid3
+apt-get -q update
+apt-get -qy install squid squid-langpack squidclient calamaris deborphan
+apt-get clean
+
+wget -q -T 4 -O /etc/squid/squid.conf - https://raw.githubusercontent.com/sinfallas/uc-stuff/master/squid.conf
+
+# reiniciar servicio
+# poner transparente
+
+reboot
+exit 0
