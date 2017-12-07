@@ -9,19 +9,16 @@ if [[ "$EUID" != "0" ]]; then
 fi
 
 export {http,https,ftp}_proxy="http://user:pass@proxy.uc.edu.ve:5010"
-
 mkdir -p /var/spool/squid3
 mkdir -p /var/log/squid3
-
 chown -R proxy:proxy /var/spool/squid3
 chown -R proxy:proxy /var/log/squid3
 apt-get -q update
 apt-get -qy install squid squid-langpack squidclient calamaris deborphan
 apt-get clean
-
 wget -q -T 4 -O /etc/squid/squid.conf - https://raw.githubusercontent.com/sinfallas/uc-stuff/master/squid.conf
+systemctl restart squid
 
-# reiniciar servicio
 # poner transparente
 
 reboot
