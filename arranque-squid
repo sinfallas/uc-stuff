@@ -1,0 +1,45 @@
+#!/usr/bin/env bash
+# Made by Sinfallas <sinfallas@yahoo.com>
+# Licence: GPL-2
+LC_ALL=C
+IFS=" "
+trap "rm -f /run/$(basename $0).pid; exit" 0 1 2 3 15
+echo "$BASHPID" > /run/$(basename $0).pid
+if [[ "$EUID" != "0" ]]; then
+	echo -e "\e[00;31mERROR: Debes ser root.\e[00m"
+	exit 1
+fi
+
+echo 1 > /proc/sys/net/ipv4/ip_forward
+iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -d 0.0.0.0/0 -j MASQUERADE
+
+systemctl stop squid
+rm -f /var/run/squid.pid
+rm -rf /var/spool/squid3/*
+mkdir -p /var/spool/squid3
+mkdir -p /var/log/squid3
+chown -R proxy:proxy /var/spool/squid3
+chown -R proxy:proxy /var/log/squid3
+squid3 -z
+systemctl start squid
+
+systemctl stop isc-dhcp-server.service
+rm -f /var/run/dhcpd.pid
+chmod 666 /var/lib/dhcp/dhcpd.leases
+systemctl start isc-dhcp-server.service
+
+history -c
+rm -rf /tmp/*
+rm -rf /var/tmp/*
+rm -rf /var/cache/apt/*
+rm -rf /var/cache/apt/archives/*
+rm -rf /root/.local/share/Trash/*
+rm -rf /home/*/.cache/*
+rm -rf /home/*/.local/share/Trash/*
+rm -rf /home/*/.mozilla/firefox/*/*Cache*
+apt-get -y purge $(deborphan) $(deborphan --libdevel) $(deborphan --find-config)
+apt-get -y autoremove
+apt-get clean
+
+rm -f /run/$(basename $0).pid
+exit 0
