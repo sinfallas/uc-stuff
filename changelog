@@ -1,4 +1,58 @@
-commit ec297a048a38d96b0478d2be88797283a1dab6ea (HEAD, origin/master, origin/HEAD, master)
+commit 14ce8bbd8de63576db4957897b4619b39c35758a (HEAD -> master, origin/master, origin/HEAD)
+Author: jose perez <sinfallas@gmail.com>
+Date:   Thu Feb 15 22:30:58 2018 -0400
+
+    * se mejora el script de arranque
+
+commit b9b5957bfc78dc2d6ee2b8b68d1adf295db69bb3 (tag: v0.4)
+Author: Jose Perez <sinfallas@users.noreply.github.com>
+Date:   Thu Dec 7 10:35:45 2017 -0400
+
+    Update squid-install
+
+commit 97550e083e9d43b3190c31f51dbcca404d3927cf
+Author: Jose Perez <sinfallas@users.noreply.github.com>
+Date:   Thu Dec 7 10:30:46 2017 -0400
+
+    Create squid-install
+
+commit a93ba7c783042dcc0bfce7f6acf00c75c418037e
+Author: Jose Perez <sinfallas@users.noreply.github.com>
+Date:   Thu Dec 7 10:17:40 2017 -0400
+
+    Update squid.conf
+
+commit 4cf7568fd6f97c8c64099f0644ced0d1b98eecce (tag: v0.3)
+Author: Jose Perez <sinfallas@users.noreply.github.com>
+Date:   Thu Dec 7 08:16:04 2017 -0400
+
+    Create adaptar.sh
+
+commit 815a509f8a892d4c2ca83bdecddae3c4187f8ecf
+Author: Jose Perez <sinfallas@users.noreply.github.com>
+Date:   Thu Nov 23 07:18:35 2017 -0400
+
+    Update README.md
+
+commit a6b06a2f7defce4b28f909493f66b0394e4399df (tag: v0.2)
+Author: Jose Perez <sinfallas@users.noreply.github.com>
+Date:   Thu Sep 28 08:09:24 2017 -0400
+
+    Update squid.conf
+
+commit a3cbf716b5f5aa87ee47bb3638105274faebf667
+Author: Jose Perez <sinfallas@users.noreply.github.com>
+Date:   Wed Jul 6 09:04:08 2016 -0400
+
+    Delete dhcpd.conf~
+
+commit 16542c3c85b8419f37b103dd37d9ae113884fb82 (tag: v0.1)
+Author: jose perez <sinfallas@gmail.com>
+Date:   Tue Jun 28 17:06:38 2016 -0400
+
+    * changelog
+
+commit ec297a048a38d96b0478d2be88797283a1dab6ea
 Author: jose perez <sinfallas@gmail.com>
 Date:   Tue Jun 28 17:06:05 2016 -0400
 
