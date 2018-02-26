@@ -10,6 +10,8 @@ if [[ "$EUID" != "0" ]]; then
 	exit 1
 fi
 
+rm -f /root/.listo
+
 echo 1 > /proc/sys/net/ipv4/ip_forward
 iptables -t nat -A POSTROUTING -s 10.0.0.0/24 -d 0.0.0.0/0 -j MASQUERADE
 
@@ -22,11 +24,23 @@ chown -R proxy:proxy /var/spool/squid3
 chown -R proxy:proxy /var/log/squid3
 squid3 -z
 systemctl start squid
+if [[ $? = 0 ]]; then
+	echo -e "\e[00;1;92mArranque de squid exitoso.\e[00m"
+else
+	echo -e "\e[00;31mError al iniciar squid.\e[00m"
+	exit 1
+fi
 
 systemctl stop isc-dhcp-server.service
 rm -f /var/run/dhcpd.pid
 chmod 666 /var/lib/dhcp/dhcpd.leases
 systemctl start isc-dhcp-server.service
+if [[ $? = 0 ]]; then
+	echo -e "\e[00;1;92mArranque de dhcpd exitoso.\e[00m"
+else
+	echo -e "\e[00;31mError al iniciar dhcpd.\e[00m"
+	exit 1
+fi
 
 history -c
 rm -rf /tmp/*
@@ -41,5 +55,7 @@ apt-get -y purge $(deborphan) $(deborphan --libdevel) $(deborphan --find-config)
 apt-get -y autoremove
 apt-get clean
 
+echo "1" > /root/.listo
+echo "Finalizado."
 rm -f /run/$(basename $0).pid
 exit 0
